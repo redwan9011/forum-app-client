@@ -24,7 +24,6 @@ const SocialLogin = () => {
             axiosPublic.post('/users' , userInfo)
             .then(res => {
                 console.log(res.data);
-                alert('add the user')
             })
         })
         .catch( err => {

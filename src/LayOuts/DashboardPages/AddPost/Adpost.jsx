@@ -1,16 +1,19 @@
 
+import { useContext } from "react";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import Swal from "sweetalert2";
+import { AuthContext } from "../../../Provider/AuthProvider";
 
 
 const Adpost = () => {
     const axiosSecure = useAxiosSecure()
+    const {user} = useContext(AuthContext)
     const handleAddPost = e => {
         e.preventDefault();
 
         const form = e.target;
         const name = form.name.value
-        const email = form.email.value;
+        const email = user?.email;
         const title = form.title.value;
         const tag = form.tag.value;
         const upvote = parseInt(form.upvote.value);
@@ -43,13 +46,7 @@ const Adpost = () => {
                         </label>
                         <input type="text" name="name" placeholder="author name" className="input input-bordered" required />
                     </div>
-                    <div className="form-control w-full">
-                        <label className="label">
-                            <span className="label-text">Author Email</span>
-                        </label>
-                        <input type="Email" name="email" placeholder="author email" className="input input-bordered" required />
 
-                    </div>
                 </div>
 
                 <div className="flex gap-5 w-full">

@@ -7,6 +7,12 @@ import Adpost from "../LayOuts/DashboardPages/AddPost/Adpost";
 import PostDetails from "../Pages/PostDetails/PostDetails";
 import LayOut from "../LayOuts/LayOut";
 import UsersProfile from "../LayOuts/DashboardPages/UsersProfile/UsersProfile";
+import PrivateRouts from "./PrivateRouts";
+import UserPost from "../LayOuts/DashboardPages/UserPost/UserPost";
+import AdminProfile from "../LayOuts/DashboardPages/AdminProfile/AdminProfile";
+import ManageUsers from "../LayOuts/DashboardPages/ManageUsers/ManageUsers";
+import Activites from "../LayOuts/DashboardPages/Activites/Activites";
+import Announcement from "../LayOuts/DashboardPages/Announcement/Announcement";
 
 const router = createBrowserRouter([
     {
@@ -34,19 +40,42 @@ const router = createBrowserRouter([
     },
     {
       path: "/dashboard",
-      element:<Dashboard></Dashboard> ,
+      element:<PrivateRouts><Dashboard></Dashboard></PrivateRouts> ,
       children: [
         // users dashboard
 
         {
           path: 'userProfile',
-          element: <UsersProfile></UsersProfile>,
+          element: <PrivateRouts><UsersProfile></UsersProfile></PrivateRouts> ,
           loader: ()=> fetch('http://localhost:5000/users')
 
         },
         {
           path: 'addpost',
-          element: <Adpost></Adpost>
+          element: <PrivateRouts> <Adpost></Adpost></PrivateRouts> 
+        },
+        {
+          path: 'mypost',
+          element: <PrivateRouts> <UserPost></UserPost> </PrivateRouts> 
+        },
+
+        // admin dashboard
+
+        {
+          path: 'adminProfile',
+          element: <AdminProfile></AdminProfile>
+        },
+        {
+          path: 'manageusers',
+          element: <ManageUsers></ManageUsers>
+        },
+        {
+          path: 'activities',
+          element: <Activites></Activites>
+        },
+        {
+          path: 'announcement',
+          element: <Announcement></Announcement>
         },
 
 
