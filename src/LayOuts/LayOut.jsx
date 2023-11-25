@@ -5,9 +5,9 @@ import Navbar from "../Pages/Navbar/Navbar";
 const LayOut = () => {
     return (
         <div>
-                <Navbar></Navbar>
+            <Navbar></Navbar>
             <div className="max-w-6xl mx-auto">
-            <Outlet></Outlet>
+                <Outlet></Outlet>
             </div>
         </div>
     );

@@ -15,30 +15,11 @@ const Posts = () => {
     }, [axiosSecure])
 
     return (
-        <div>
 
-            <div className="overflow-x-auto">
-                <table className="table text-center">
-                    {/* head */}
-                    <thead >
-                        <tr className="text-lg font-bold text-black">
-                            <th>Author image</th>
-                            <th>Title</th>
-                            <th>Favorite Color</th>
-                            <th>Vote Counts</th>
-                            <th>Comment Counts</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-
-                        {
-                            posts.map(post => <PostCard key={post._id} post={post}></PostCard>)
-                        }
-                    </tbody>
-
-                </table>
-            </div>
-
+        <div className="grid gap-10 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 my-10">
+            {
+                posts.map(post => <PostCard key={post._id} post={post}></PostCard>)
+            }
         </div>
     );
 };
