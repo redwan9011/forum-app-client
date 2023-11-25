@@ -4,11 +4,24 @@ import Register from "../Pages/Login/Register/Register";
 import Login from "../Pages/Login/Register/Login";
 import Dashboard from "../Pages/Dashboard/Dashboard";
 import Adpost from "../LayOuts/DashboardPages/AddPost/Adpost";
+import PostDetails from "../Pages/PostDetails/PostDetails";
+import LayOut from "../LayOuts/LayOut";
 
 const router = createBrowserRouter([
     {
       path: "/",
-      element:<Home></Home> ,
+      element:<LayOut></LayOut> ,
+      children: [
+        {
+          path: '/',
+          element: <Home></Home>
+        },
+        {
+          path: '/details/:id',
+          element:<PostDetails></PostDetails>,
+          loader: ({params}) => fetch(`http://localhost:5000/posts/${params.id}`)
+        }
+      ]
     },
     {
       path: "/login",

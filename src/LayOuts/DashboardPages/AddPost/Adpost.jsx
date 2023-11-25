@@ -1,4 +1,6 @@
+
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
+import Swal from "sweetalert2";
 
 
 const Adpost = () => {
@@ -11,24 +13,29 @@ const Adpost = () => {
         const email = form.email.value;
         const title = form.title.value;
         const tag = form.tag.value;
-        const upvote = form.upvote.value;
-        const downvote = form.downvote.value;
+        const upvote = parseInt(form.upvote.value);
+        const downvote = parseInt(form.downvote.value);
         const description = form.description.value;
         const image = form.image.value;
         const date = new Date()
         const postTime = date.toISOString();
-        const postData = { name , email, title, tag,upvote,downvote,description,image , date , postTime};
-        
-        console.log( postData);
+        const comments = 0
+        const postData = { name, email, title, tag, upvote, downvote, description, image, date, postTime, comments };
 
-        axiosSecure.post('/posts' , postData)
-        .then( res => {
-            console.log(res.data);
-        })
+        console.log(postData);
+
+        axiosSecure.post('/posts', postData)
+            .then(res => {
+                console.log(res.data);
+                Swal.fire("Post Add Succesfully");
+            })
+           
     }
     return (
+    
         <div className="bg-slate-300 h-screen">
-            <form className="card-body" onSubmit={handleAddPost}>
+               
+            <form className="card-body" onSubmit={handleAddPost} >
                 <div className="flex gap-5 w-full">
                     <div className="form-control w-full">
                         <label className="label">
@@ -54,7 +61,7 @@ const Adpost = () => {
                     </div>
                     <div className="form-control w-full">
                         <label className="label">
-                            <span className="label-text">Password</span>
+                            <span className="label-text">Select a tag</span>
                         </label>
                         <select name="tag" className="select sinput input-bordered">
                             <option disabled defaultValue='Select a tag'>Select a tag</option>
@@ -69,7 +76,7 @@ const Adpost = () => {
                             <option value='VirtualWorlds'>#VirtualWorlds</option>
                             <option value='TechWonders'>#TechWonders</option>
                             <option value='nnovationHub'>#nnovationHub</option>
-                           
+
                         </select>
                     </div>
                 </div>
@@ -99,18 +106,19 @@ const Adpost = () => {
                     </div>
                 </div>
 
-                <div className="flex gap-5 w-full">
+                <div className="flex gap-5 w-full" >
                     <div className="form-control w-full">
                         <label className="label">
                             <span className="label-text">Author Image</span>
                         </label>
                         <input type="text" name="image" placeholder="author image" className="input input-bordered" required />
-                    </div>
+                    </div >
                 </div>
 
 
                 <div className="form-control mt-6">
-                  <input className="w-full btn btn-outline text-xl" type="submit" value="Add Post" />
+                    <input  className="w-full btn btn-outline text-xl" type="submit" value="Add Post" />
+                    
                 </div>
             </form>
         </div>
