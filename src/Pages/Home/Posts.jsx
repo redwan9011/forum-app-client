@@ -10,10 +10,10 @@ const Posts = () => {
         axiosSecure.get('/posts')
             .then(res => {
                 setPosts(res.data)
-
+               
             })
     }, [axiosSecure])
-
+    console.log(posts);
     return (
 
         <div className="grid gap-10 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 my-10">

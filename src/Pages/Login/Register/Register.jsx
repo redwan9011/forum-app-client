@@ -5,12 +5,13 @@ import {  updateProfile } from "firebase/auth";
 import { useForm } from 'react-hook-form';
 import { AuthContext } from '../../../Provider/AuthProvider';
 import SocialLogin from './SocialLogin';
+import useAxiosPublic from '../../../Hooks/useAxiosPublic';
 
 
 
 
 const Register = () => {
-
+const axiosPublic = useAxiosPublic()
 const {signUp} = useContext(AuthContext)
 const navigate = useNavigate()
 
@@ -22,18 +23,29 @@ const navigate = useNavigate()
       } = useForm()
 
       const onSubmit = (data) => {
-       
+       console.log(data);
         signUp(data.email, data.password)
         .then( result => {
-                  console.log(result.data);
+                  
                   updateProfile(result.user , {
                       displayName: data.name,
                       photoURL: data.photo
                   })
                   .then(()=> {
-
-                 
-                   
+                    // create users entry in database
+                    const usersInfo = {
+                      name: data.name,
+                      email: data.email,
+                      photo: data.photo,
+                      badge: "Bronze"
+                    }
+                    axiosPublic.post('/users', usersInfo)
+                    .then( res => {
+                      console.log( 'users added in database',res.data);
+                      if(res.data.insertedId){
+                        alert('sign up succesfully')
+                      }
+                    })
                    
                   })
                   .catch(()=> {})

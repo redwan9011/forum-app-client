@@ -6,6 +6,7 @@ import Dashboard from "../Pages/Dashboard/Dashboard";
 import Adpost from "../LayOuts/DashboardPages/AddPost/Adpost";
 import PostDetails from "../Pages/PostDetails/PostDetails";
 import LayOut from "../LayOuts/LayOut";
+import UsersProfile from "../LayOuts/DashboardPages/UsersProfile/UsersProfile";
 
 const router = createBrowserRouter([
     {
@@ -35,10 +36,20 @@ const router = createBrowserRouter([
       path: "/dashboard",
       element:<Dashboard></Dashboard> ,
       children: [
+        // users dashboard
+
+        {
+          path: 'userProfile',
+          element: <UsersProfile></UsersProfile>,
+          loader: ()=> fetch('http://localhost:5000/users')
+
+        },
         {
           path: 'addpost',
           element: <Adpost></Adpost>
-        }
+        },
+
+
       ]
     },
 
