@@ -51,6 +51,12 @@ const router = createBrowserRouter([
 
         },
         {
+          path: '/dashboard',
+          element: <PrivateRouts><UsersProfile></UsersProfile></PrivateRouts> ,
+          loader: ()=> fetch('http://localhost:5000/users')
+
+        },
+        {
           path: 'addpost',
           element: <PrivateRouts> <Adpost></Adpost></PrivateRouts> 
         },

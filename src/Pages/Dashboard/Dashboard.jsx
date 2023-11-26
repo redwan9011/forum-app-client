@@ -1,8 +1,10 @@
 import { Link, Outlet } from "react-router-dom";
+import useAdmin from "../../Hooks/useAdmin/useAdmin";
 
 
 const Dashboard = () => {
-    const isAdmin = true
+    // const isAdmin = true
+    const [isAdmin] = useAdmin()
     return (
         <div className="grid grid-cols-12 gap-10 max-w-6xl mx-auto">
             <div className="col-span-3 bg-slate-500 min-h-screen text-white  ">
