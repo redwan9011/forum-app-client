@@ -1,18 +1,28 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../../Provider/AuthProvider";
-
+import { IoMdNotificationsOutline } from "react-icons/io";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
 const Navbar = () => {
+    const axiosSecure = useAxiosSecure()
     const [ showmenu, setShowMenu] = useState(false)
     const {user,  logOut} = useContext(AuthContext)
+    const [ announcement, setAnnouncement] = useState([])
     const links = <>
         <li><NavLink>Home</NavLink></li>
         <li><NavLink>MemberShip</NavLink></li>
-        <li><NavLink>Notification</NavLink></li>
+      
     </>
+
+    useEffect(()=> {
+        axiosSecure.get('/announcement')
+        .then(res => {
+           setAnnouncement(res.data)
+        })
+    },[axiosSecure])
     return (
-        <div className="bg-red-200">
-            <div className="navbar  max-w-6xl mx-auto">
+        <div className="bg-slate-400">
+            <div className="navbar  max-w-6xl mx-auto text-white">
                 <div className="navbar-start">
                     <div className="dropdown">
                         <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -33,7 +43,22 @@ const Navbar = () => {
                        }
                     </ul>
                 </div>
-                <div className="navbar-end">
+                <div className="navbar-end gap-6">
+
+                    {
+                        announcement.length > 0 ? 
+                      <Link to='/announcement'>
+                        <div className="relative">
+                        <IoMdNotificationsOutline className="text-4xl "></IoMdNotificationsOutline>
+                        <div className="bg-red-500  w-5 h-5 absolute top-0 right-0 rounded-full flex justify-center items-center p-1">
+                        <span className="text-white text-xs">{announcement.length}</span>
+                        </div>
+                     </div>
+                      </Link>
+                     : 
+                     ''
+                    }
+                   
                   {
                     user ? <div className="">
                         <img src={user?.photoURL} onClick={()=> setShowMenu(!showmenu)} alt=""  className="rounded-full h-14 w-14 cursor-pointer"/>

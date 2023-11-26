@@ -8,12 +8,12 @@ import { useLoaderData } from "react-router-dom";
 
 const UsersProfile = () => {
     const userData = useLoaderData();
-    
+    console.log(userData);
     const { user , loading} = useContext(AuthContext)
     const axiosPublic = useAxiosPublic()
     const [ posts, setPosts] = useState([])
     const [ users , setUsers] = useState({})
-   
+   console.log(users);
     useEffect(()=> {
         axiosPublic.get('/posts')
         .then(res => {
@@ -39,10 +39,10 @@ const UsersProfile = () => {
     return (
         <div>
             <div className="flex flex-col items-center mt-10">
-                <img src={user?.photoURL} alt="" className="w-36 h-36 rounded-full" /> 
+                <img src={users?.photo} alt="" className="w-36 h-36 rounded-full" /> 
                 <h1 className="mt-4 text-2xl font-bold">{users?.name}</h1>
                 <p className="font-semibold">email: {users?.email}</p>
-                <p className="font-semibold">Badge: {users?.badge}</p>
+              
             </div>
            {
             posts.length > 0 ?  <h1 className="text-2xl font-bold my-5 text-center">My Recent  Posts</h1> 

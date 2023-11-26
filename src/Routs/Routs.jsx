@@ -13,6 +13,7 @@ import AdminProfile from "../LayOuts/DashboardPages/AdminProfile/AdminProfile";
 import ManageUsers from "../LayOuts/DashboardPages/ManageUsers/ManageUsers";
 import Activites from "../LayOuts/DashboardPages/Activites/Activites";
 import Announcement from "../LayOuts/DashboardPages/Announcement/Announcement";
+import AnnouncementShow from "../Pages/Announcement/AnnouncementShow";
 
 const router = createBrowserRouter([
     {
@@ -22,6 +23,10 @@ const router = createBrowserRouter([
         {
           path: '/',
           element: <Home></Home>
+        },
+        {
+          path: '/announcement',
+          element: <AnnouncementShow></AnnouncementShow>
         },
         {
           path: '/details/:id',
@@ -50,12 +55,7 @@ const router = createBrowserRouter([
           loader: ()=> fetch('http://localhost:5000/users')
 
         },
-        {
-          path: '/dashboard',
-          element: <PrivateRouts><UsersProfile></UsersProfile></PrivateRouts> ,
-          loader: ()=> fetch('http://localhost:5000/users')
-
-        },
+      
         {
           path: 'addpost',
           element: <PrivateRouts> <Adpost></Adpost></PrivateRouts> 
@@ -69,7 +69,8 @@ const router = createBrowserRouter([
 
         {
           path: 'adminProfile',
-          element: <AdminProfile></AdminProfile>
+          element: <AdminProfile></AdminProfile>,
+          loader: ()=> fetch('http://localhost:5000/users')
         },
         {
           path: 'manageusers',
