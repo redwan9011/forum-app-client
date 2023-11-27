@@ -1,19 +1,23 @@
-import { useEffect, useState } from "react";
+
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import PostCard from "./PostCard";
-
+import { useQuery } from "@tanstack/react-query";
 
 const Posts = () => {
     const axiosSecure = useAxiosSecure()
-    const [posts, setPosts] = useState([])
-    useEffect(() => {
-        axiosSecure.get('/posts')
-            .then(res => {
-                setPosts(res.data)
-               
-            })
-    }, [axiosSecure])
-   
+
+    const{ data : posts =[], isLoading} = useQuery({
+        queryKey: ['cart' , ],
+        queryFn: async ()=> {
+            const res = await  axiosSecure(`/posts`)
+            return res.data
+        }
+    })
+ if(isLoading){
+    return <div className="h-screen flex justify-center items-center">
+        <span className="loading loading-spinner loading-lg"></span>
+    </div>
+ }
     return (
 
         <div className="grid gap-10 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 my-10">

@@ -1,16 +1,22 @@
-import { useEffect, useState } from "react";
+
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
+import { useQuery } from "@tanstack/react-query";
 
 
 const AnnouncementShow = () => {
     const axiosSecure = useAxiosSecure()
-    const [ announcement, setAnnouncement] = useState([])
-    useEffect(()=> {
-        axiosSecure.get('/announcement')
-        .then(res => {
-           setAnnouncement(res.data)
-        })
-    },[axiosSecure])
+    const{ data : announcement =[], isLoading} = useQuery({
+        queryKey: ['cart' ],
+        queryFn: async ()=> {
+            const res = await  axiosSecure(`/announcement`)
+            return res.data
+        }
+    })
+ if(isLoading){
+    return <div className="h-screen flex justify-center items-center">
+        <span className="loading loading-spinner loading-lg"></span>
+    </div>
+ }
     return (
         <div className=" my-8 max-w-4xl mx-auto">
             {

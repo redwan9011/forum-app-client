@@ -9,8 +9,8 @@ const Navbar = () => {
     const {user,  logOut} = useContext(AuthContext)
     const [ announcement, setAnnouncement] = useState([])
     const links = <>
-        <li><NavLink>Home</NavLink></li>
-        <li><NavLink>MemberShip</NavLink></li>
+        <li><NavLink to='/'>Home</NavLink></li>
+        <li><NavLink to='/membership'>MemberShip</NavLink></li>
       
     </>
 

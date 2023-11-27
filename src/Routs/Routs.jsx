@@ -14,6 +14,7 @@ import ManageUsers from "../LayOuts/DashboardPages/ManageUsers/ManageUsers";
 import Activites from "../LayOuts/DashboardPages/Activites/Activites";
 import Announcement from "../LayOuts/DashboardPages/Announcement/Announcement";
 import AnnouncementShow from "../Pages/Announcement/AnnouncementShow";
+import MemberShip from "../Pages/Mebership/MemberShip";
 
 const router = createBrowserRouter([
     {
@@ -29,8 +30,12 @@ const router = createBrowserRouter([
           element: <AnnouncementShow></AnnouncementShow>
         },
         {
+          path: '/membership',
+          element: <MemberShip></MemberShip>
+        },
+        {
           path: '/details/:id',
-          element:<PostDetails></PostDetails>,
+          element:<PostDetails></PostDetails> ,
           loader: ({params}) => fetch(`http://localhost:5000/posts/${params.id}`)
         }
       ]
