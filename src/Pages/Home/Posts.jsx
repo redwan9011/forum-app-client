@@ -20,7 +20,7 @@ const Posts = () => {
  }
     return (
 
-        <div className="grid gap-10 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 my-10">
+        <div className="grid gap-10 md:gap-5 lg:gap-10 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 my-10 px-8 md:px-5 lg:px-0">
             {
                 posts.map(post => <PostCard key={post._id} post={post}></PostCard>)
             }

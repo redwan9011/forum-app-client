@@ -4,6 +4,7 @@ import { AuthContext } from "../../../Provider/AuthProvider";
 import { AiFillDelete } from "react-icons/ai";
 import Swal from "sweetalert2";
 import { FaComments } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 const UserPost = () => {
     const axiosSecure = useAxiosSecure();
@@ -78,7 +79,7 @@ const UserPost = () => {
                     
                     <td>{post.title}</td>
                     <td>{post.upvote + post.downvote}</td>
-                    <td className="text-3xl flex justify-center"> <FaComments /></td>
+                    <td className="text-3xl flex justify-center"> <Link to={`/dashboard/comment/${post._id}`}><FaComments /></Link></td>
                     <td onClick={()=>handlePostDelete(post._id)} className="text-red-600 text-3xl cursor-pointer md:text-4xl "> <AiFillDelete /></td>
                 </tr>
                 )

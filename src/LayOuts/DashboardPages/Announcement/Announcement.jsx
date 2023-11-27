@@ -27,7 +27,7 @@ const Announcement = () => {
         })
     }
     return (
-        <div>
+        <div >
             <h1 className="text-center text-2xl font-bold my-8">Make your Announcement</h1>
             <form onSubmit={handleAnnouncement}>
 

@@ -2,16 +2,23 @@ import { useLoaderData } from "react-router-dom";
 import { AiFillLike ,AiFillDislike } from "react-icons/ai";
 import { FaShare } from "react-icons/fa";
 import { useState } from "react";
+import useAxiosPublic from "../../Hooks/useAxiosPublic";
 
 const PostDetails = () => {
-    const { name, email, title, tag, upvote, downvote, description, image, date,  comments } = useLoaderData()
+    const { name, title, tag, upvote, downvote, description, image, date, _id , email } = useLoaderData()
     const [ upVote , setUpVote] = useState(upvote)
     const [ downVote , setdownVote] = useState(downvote)
-
+    const axiosPublic = useAxiosPublic()
     const handleComment = e => {
         e.preventDefault();
-        const comment = e.target.comment.value;
-        console.log(comment);
+        const form = e.target;
+        const comment = form .comment.value;
+        const commentsData = { comment, commentid:_id, email , name}
+        axiosPublic.post('/comment' , commentsData)
+        .then(res => {
+            console.log(res.data);
+            form.reset()
+        })
     }
     return (
         <div className="mt-4 md:mt-10">
@@ -44,7 +51,7 @@ const PostDetails = () => {
 
                     <form onSubmit={handleComment}> 
 
-                        <input type="text" name="comment" placeholder="type your comment"  className="focus:outline-none focus:border-black px-2 py-2 input-bordered border-0 border-b-2 w-2/4"/>
+                        <input type="text" name="comment" placeholder="type your comment"  className="focus:outline-none focus:border-black px-2 py-2 input-bordered border-0 border-b-2 w-2/4" required/>
                         <input type="submit" value="Comment" className="bg-slate-700 px-3 py-2 text-white cursor-pointer ml-5 rounded-md" />
                     </form>
                 </div>

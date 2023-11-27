@@ -15,6 +15,7 @@ import Activites from "../LayOuts/DashboardPages/Activites/Activites";
 import Announcement from "../LayOuts/DashboardPages/Announcement/Announcement";
 import AnnouncementShow from "../Pages/Announcement/AnnouncementShow";
 import MemberShip from "../Pages/Mebership/MemberShip";
+import Comment from "../LayOuts/DashboardPages/UserPost/Comment";
 
 const router = createBrowserRouter([
     {
@@ -68,6 +69,10 @@ const router = createBrowserRouter([
         {
           path: 'mypost',
           element: <PrivateRouts> <UserPost></UserPost> </PrivateRouts> 
+        },
+        {
+          path: 'comment/:id',
+          element: <PrivateRouts> <Comment></Comment>  </PrivateRouts> 
         },
 
         // admin dashboard
