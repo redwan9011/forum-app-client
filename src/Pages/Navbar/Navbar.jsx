@@ -34,7 +34,7 @@ const Navbar = () => {
                            }
                         </ul>
                     </div>
-                    <a className="btn btn-ghost text-xl">daisyUI</a>
+                    <a className="btn btn-ghost text-xl">DISPUTO</a>
                 </div>
                 <div className="navbar-center hidden lg:flex">
                     <ul className="menu menu-horizontal px-1 gap-4">
@@ -64,12 +64,12 @@ const Navbar = () => {
                         <img src={user?.photoURL} onClick={()=> setShowMenu(!showmenu)} alt=""  className="rounded-full h-14 w-14 cursor-pointer"/>
                         <div className={`text-center w-36  bg-white px-3 py-3 text-black absolute right-8 lg:right-16 md:right-10 overflow-hidden  shadow-2xl ${ showmenu ? 'block z-30 top-[72px]' : 'hidden'}`}>
                             <h3>{user?.displayName}</h3>
-                            <Link to='/dashboard'>Dashboard</Link> <br />
-                            <button onClick={()=> logOut()}>Log Out</button>
+                            <Link to='/dashboard' className="hover:underline">Dashboard</Link> <br />
+                            <button onClick={()=> logOut()} className=" hover:underline">Log Out</button>
                         </div>
                     </div> 
                     : 
-                    <Link to='/login'> <button className="btn btn-outline">Join Us</button></Link>
+                    <Link to='/login'> <button className="btn btn-outline border-white text-white">Join Us</button></Link>
                   }
                 </div>
             </div>

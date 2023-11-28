@@ -33,7 +33,7 @@ const PostDetails = () => {
                     <p>#{tag}</p>
                     <p>Post Time: {date}</p>
 
-                    <div className="flex gap-10">
+                    <div className="flex flex-col md:flex-row gap-2 md:gap-10">
                         <button className="btn" onClick={() => setUpVote(() => upvote + 1)}>
                             UpVote <AiFillLike />
                             <div className="badge badge-secondary">{upVote}</div>
@@ -49,10 +49,10 @@ const PostDetails = () => {
                         </button>
                     </div>
 
-                    <form onSubmit={handleComment}> 
+                    <form onSubmit={handleComment} className="mt-2"> 
 
                         <input type="text" name="comment" placeholder="type your comment"  className="focus:outline-none focus:border-black px-2 py-2 input-bordered border-0 border-b-2 w-2/4" required/>
-                        <input type="submit" value="Comment" className="bg-slate-700 px-3 py-2 text-white cursor-pointer ml-5 rounded-md" />
+                        <input type="submit" value="Comment" className="bg-slate-700 px-2 py-1 md:px-3 md:py-2 text-white cursor-pointer ml-5 rounded-md text-sm md:text-base" />
                     </form>
                 </div>
                 

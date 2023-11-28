@@ -37,7 +37,7 @@ const router = createBrowserRouter([
         {
           path: '/details/:id',
           element:<PostDetails></PostDetails> ,
-          loader: ({params}) => fetch(`http://localhost:5000/posts/${params.id}`)
+          loader: ({params}) => fetch(`https://forum-app-server-roan.vercel.app/posts/${params.id}`)
         }
       ]
     },
@@ -58,7 +58,7 @@ const router = createBrowserRouter([
         {
           path: 'userProfile',
           element: <PrivateRouts><UsersProfile></UsersProfile></PrivateRouts> ,
-          loader: ()=> fetch('http://localhost:5000/users')
+          loader: ()=> fetch('https://forum-app-server-roan.vercel.app/users')
 
         },
       
@@ -80,7 +80,7 @@ const router = createBrowserRouter([
         {
           path: 'adminProfile',
           element: <AdminProfile></AdminProfile>,
-          loader: ()=> fetch('http://localhost:5000/users')
+          loader: ()=> fetch('https://forum-app-server-roan.vercel.app/users')
         },
         {
           path: 'manageusers',
