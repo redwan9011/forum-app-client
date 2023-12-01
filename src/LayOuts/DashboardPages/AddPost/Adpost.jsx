@@ -3,14 +3,45 @@ import { useContext } from "react";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import Swal from "sweetalert2";
 import { AuthContext } from "../../../Provider/AuthProvider";
+import useAxiosPublic from "../../../Hooks/useAxiosPublic";
+import { useEffect } from "react";
+import { useState } from "react";
+import { useQuery } from "@tanstack/react-query";
+
 
 
 const Adpost = () => {
     const axiosSecure = useAxiosSecure()
-    const {user} = useContext(AuthContext)
+    const axiosPublic = useAxiosPublic()
+    const {user } = useContext(AuthContext)
+    const [ posts, setPosts] = useState([])
+    // useEffect( ()=> {
+    //     axiosPublic( '/posts')
+    //     .then( res => {
+    //         const allposts = res.data
+    //         const postLimit = allposts.filter( post => post?.email === user?.email);
+    //         setPosts(postLimit)
+    //     })
+    // }, [axiosPublic,  user?.email])
+    
+    const { refetch, data: allposts = [] } = useQuery({
+        queryKey: ['users'],
+        queryFn: async () => {
+            const res = await axiosPublic.get('/posts')
+            return res.data
+        }
+    })
+    console.log(posts);
+    useEffect(()=> {
+        console.log(allposts);
+        const postLimit = allposts.filter( post => post?.email === user?.email);
+                setPosts(postLimit)
+    }, [allposts, user?.email])
+
+    console.log(allposts);
     const handleAddPost = e => {
         e.preventDefault();
-
+       
         const form = e.target;
         const name = form.name.value
         const email = user?.email;
@@ -27,12 +58,22 @@ const Adpost = () => {
 
         console.log(postData);
 
+      
+        if( posts.length >= 5){
+            return alert('you have already 5 post')
+        }
+      
+       else{
         axiosSecure.post('/posts', postData)
-            .then(res => {
-                console.log(res.data);
-                Swal.fire("Post Add Succesfully");
-            })
-           
+      
+        .then(res => {
+            console.log(res.data);
+            refetch()
+            Swal.fire("Post Add Succesfully");
+        })
+       }
+       
+      
     }
     return (
     

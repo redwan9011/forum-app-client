@@ -47,14 +47,14 @@ const Navbar = () => {
 
                     {
                         announcement.length > 0 ? 
-                      <Link to='/announcement'>
+                     
                         <div className="relative">
                         <IoMdNotificationsOutline className="text-4xl "></IoMdNotificationsOutline>
                         <div className="bg-red-500  w-5 h-5 absolute top-0 right-0 rounded-full flex justify-center items-center p-1">
                         <span className="text-white text-xs">{announcement.length}</span>
                         </div>
                      </div>
-                      </Link>
+                     
                      : 
                      ''
                     }

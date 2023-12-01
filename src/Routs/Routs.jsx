@@ -13,7 +13,7 @@ import AdminProfile from "../LayOuts/DashboardPages/AdminProfile/AdminProfile";
 import ManageUsers from "../LayOuts/DashboardPages/ManageUsers/ManageUsers";
 import Activites from "../LayOuts/DashboardPages/Activites/Activites";
 import Announcement from "../LayOuts/DashboardPages/Announcement/Announcement";
-import AnnouncementShow from "../Pages/Announcement/AnnouncementShow";
+
 import MemberShip from "../Pages/Mebership/MemberShip";
 import Comment from "../LayOuts/DashboardPages/UserPost/Comment";
 
@@ -26,13 +26,10 @@ const router = createBrowserRouter([
           path: '/',
           element: <Home></Home>
         },
-        {
-          path: '/announcement',
-          element: <AnnouncementShow></AnnouncementShow>
-        },
+     
         {
           path: '/membership',
-          element: <MemberShip></MemberShip>
+          element: <PrivateRouts><MemberShip></MemberShip></PrivateRouts>
         },
         {
           path: '/details/:id',

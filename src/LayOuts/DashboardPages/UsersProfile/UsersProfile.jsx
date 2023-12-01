@@ -41,6 +41,7 @@ const UsersProfile = () => {
             <div className="flex flex-col items-center mt-10">
                 <img src={users?.photo} alt="" className="w-36 h-36 rounded-full" /> 
                 <h1 className="mt-4 text-2xl font-bold">{users?.name}</h1>
+                <p className="font-semibold my-1">{users?.badge}</p>
                 <p className="font-semibold">email: {users?.email}</p>
               
             </div>

@@ -7,7 +7,7 @@ const stripePromise = loadStripe(import.meta.env.VITE_PAYMENT_KEY)
 console.log(import.meta.env.PAYMENT_KEY)
 const MemberShip = () => {
     return (
-        <div className="mt-10">
+        <div className="mt-10 max-w-6xl mx-auto h-[75vh]">
           <div>
                 <Elements stripe={stripePromise}>
                     

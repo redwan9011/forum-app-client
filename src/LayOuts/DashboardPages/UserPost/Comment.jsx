@@ -33,7 +33,7 @@ const Comment = () => {
                     <thead>
                         <tr>
                             <th></th>
-                            <th>Name</th>
+                            <th>email</th>
                             <th>Comment</th>
                            
                         </tr>
@@ -42,7 +42,7 @@ const Comment = () => {
                       {
                         comments.map( (comment, ind)=>  <tr key={ind}>
                             <th>{ind + 1}</th>
-                            <td>{comment?.name}</td>
+                            <td>{comment?.email}</td>
                             <td>{comment.comment}</td>
                             
                         </tr>)
